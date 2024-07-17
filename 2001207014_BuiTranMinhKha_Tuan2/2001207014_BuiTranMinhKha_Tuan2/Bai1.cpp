@@ -54,6 +54,10 @@ int main() {
                 printf("%d khong co trong mang.\n", x);
             }
             break;
+        case 4:
+            sapXepInterchange(a, n, 1);
+            printf("Mang da duoc sap xep tang dan.\n");
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -83,4 +87,15 @@ int timKiemTuLin(int a[], int n, int x) {
         }
     }
     return -1; // Khong tim thay
+}
+void sapXepInterchange(int a[], int n, int tangDan) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if ((tangDan && a[i] > a[j]) || (!tangDan && a[i] < a[j])) {
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
 }
