@@ -58,6 +58,22 @@ int main() {
             sapXepInterchange(a, n, 1);
             printf("Mang da duoc sap xep tang dan.\n");
             break;
+        case 5:
+            printf("Nhap so x: ");
+            scanf_s("%d", &x);
+            sapXepInterchange(a, n, 1); // Dam bao mang da duoc sap xep
+            pos = timKiemNhiPhan(a, n, x);
+            if (pos != -1) {
+                printf("Tim thay %d tai vi tri %d.\n", x, pos);
+            }
+            else {
+                printf("%d khong co trong mang.\n", x);
+            }
+            break;
+        case 6:
+            sapXepSelection(a, n);
+            printf("Mang da duoc sap xep theo thu tu tang dan.\n");
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -98,4 +114,33 @@ void sapXepInterchange(int a[], int n, int tangDan) {
             }
         }
     }
+}
+void sapXepSelection(int a[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (a[j] < a[minIdx]) {
+                minIdx = j;
+            }
+        }
+        int temp = a[i];
+        a[i] = a[minIdx];
+        a[minIdx] = temp;
+    }
+}
+int timKiemNhiPhan(int a[], int n, int x) {
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (a[mid] == x) {
+            return mid;
+        }
+        if (a[mid] < x) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    return -1; // Khong tim thay
 }
