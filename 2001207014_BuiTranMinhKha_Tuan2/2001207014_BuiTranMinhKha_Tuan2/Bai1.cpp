@@ -43,6 +43,17 @@ int main() {
             taoMangChan(a, n);
             printf("Mang chua toan so chan da duoc tao.\n");
             break;
+        case 3:
+            printf("Nhap so x: ");
+            scanf_s("%d", &x);
+            pos = timKiemTuLin(a, n, x);
+            if (pos != -1) {
+                printf("Tim thay %d tai vi tri %d.\n", x, pos);
+            }
+            else {
+                printf("%d khong co trong mang.\n", x);
+            }
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -64,4 +75,12 @@ void taoMangChan(int a[], int n) {
     for (int i = 0; i < n; i++) {
         a[i] = (rand() % 50) * 2; // So chan tu 0 den 100
     }
+}
+int timKiemTuLin(int a[], int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (a[i] == x) {
+            return i; // Tra ve vi tri
+        }
+    }
+    return -1; // Khong tim thay
 }
