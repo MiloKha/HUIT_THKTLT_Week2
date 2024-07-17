@@ -39,6 +39,10 @@ int main() {
             taoMangNgauNhien(a, n, 100);
             printf("Mang ngau nhien da duoc tao.\n");
             break;
+        case 2:
+            taoMangChan(a, n);
+            printf("Mang chua toan so chan da duoc tao.\n");
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -54,5 +58,10 @@ int main() {
 void taoMangNgauNhien(int a[], int n, int k) {
     for (int i = 0; i < n; i++) {
         a[i] = rand() % (k + 1);
+    }
+}
+void taoMangChan(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        a[i] = (rand() % 50) * 2; // So chan tu 0 den 100
     }
 }
