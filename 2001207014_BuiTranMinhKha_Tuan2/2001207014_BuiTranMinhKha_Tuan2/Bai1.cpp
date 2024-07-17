@@ -74,6 +74,10 @@ int main() {
             sapXepSelection(a, n);
             printf("Mang da duoc sap xep theo thu tu tang dan.\n");
             break;
+        case 7:
+            sapXepQuick(a, 0, n - 1);
+            printf("Mang da duoc sap xep theo thu tu tang dan.\n");
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -143,4 +147,23 @@ int timKiemNhiPhan(int a[], int n, int x) {
         }
     }
     return -1; // Khong tim thay
+}
+void sapXepQuick(int a[], int low, int high) {
+    if (low < high) {
+        int pivot = a[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (a[j] < pivot) {
+                i++;
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+        int temp = a[i + 1];
+        a[i + 1] = a[high];
+        a[high] = temp;
+        sapXepQuick(a, low, i);
+        sapXepQuick(a, i + 2, high);
+    }
 }
