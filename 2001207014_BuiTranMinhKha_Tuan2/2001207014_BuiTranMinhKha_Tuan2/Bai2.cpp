@@ -13,7 +13,7 @@ typedef struct {
 
 void taoMangHonSo(HonSo b[], int n);
 void xuatDanhSachHonSo(HonSo b[], int n);
-int soSanhHonSo(HonSo hs1, HonSo hs2);
+HonSo soSanhHonSoVaTraVe(HonSo hs1, HonSo hs2);
 HonSo chuyenHonSoSangPhanSo(HonSo hs);
 HonSo chuyenPhanSoSangHonSo(int tuSo, int mauSo);
 HonSo tongHonSo(HonSo hs1, HonSo hs2);
@@ -55,6 +55,22 @@ int main() {
             printf("Danh sach hon so:\n");
             xuatDanhSachHonSo(b, n);
             break;
+        case 3: {
+            int idx1, idx2;
+            printf("Nhap chi so hon so 1: ");
+            scanf_s("%d", &idx1);
+            printf("Nhap chi so hon so 2: ");
+            scanf_s("%d", &idx2);
+
+            if (idx1 >= 0 && idx1 < n && idx2 >= 0 && idx2 < n) {
+                HonSo ketQua = soSanhHonSoVaTraVe(b[idx1], b[idx2]);
+                printf("Hon so lon hon la: %d %d/%d\n", ketQua.phanNguyen, ketQua.tuSo, ketQua.mauSo);
+            }
+            else {
+                printf("Chi so khong hop le. Vui long nhap chi so tu 0 den %d.\n", n - 1);
+            }
+            break;
+        }
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
@@ -82,3 +98,20 @@ void xuatDanhSachHonSo(HonSo b[], int n) {
     printf("\n");
 }
 
+HonSo soSanhHonSoVaTraVe(HonSo hs1, HonSo hs2) {
+    int phanSo1 = hs1.phanNguyen * hs1.mauSo + hs1.tuSo;
+    int phanSo2 = hs2.phanNguyen * hs2.mauSo + hs2.tuSo;
+
+    if (phanSo1 > phanSo2) {
+        printf("Hon so 1 (%d %d/%d) > Hon so 2 (%d %d/%d)\n",
+            hs1.phanNguyen, hs1.tuSo, hs1.mauSo,
+            hs2.phanNguyen, hs2.tuSo, hs2.mauSo);
+        return hs1;
+    }
+    else {
+        printf("Hon so 2 (%d %d/%d) >= Hon so 1 (%d %d/%d)\n",
+            hs2.phanNguyen, hs2.tuSo, hs2.mauSo,
+            hs1.phanNguyen, hs1.tuSo, hs1.mauSo);
+        return hs2;
+    }
+}
